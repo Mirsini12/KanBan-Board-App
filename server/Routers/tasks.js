@@ -13,17 +13,28 @@ router.get("/", async (req, res) => {
     }
   
   })
+  
+  // get tasks with the specific status in the form http://localhost:8000/tasks?status=status
+  router.get("/", async (req, res) => {
+    try {
+      const status = req.query.status;
+    const tasks = await Task.find({status} );   
+    res.send(tasks).status(200);
+      
+    } catch (error) {
+      res.send({ msg: error })
+    }
+    
+  });
 
-  //get tasks with the specific status
-  router.get('/:status', async (req, res) => {
-    const status = req.params.status
+  // get tasks with the specific status  http://localhost:8000/tasks/status
+//   router.get('/:status', async (req, res) => {
+//     const status = req.params.status
 
-    const tasks = await Task.find(status ? { "status": status } : {})
+//     const tasks = await Task.find(status ? { "status": status } : {})
 
-    res.send(tasks).status(200)
-});
-
-
+//     res.send(tasks).status(200)
+// });
   
   router.post("/create", async (req, res) => {
     try {

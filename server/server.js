@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 const port = 8000;
 app.use(cors());
-app.use("/task",tasksRoute);
+app.use("/tasks",tasksRoute);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
