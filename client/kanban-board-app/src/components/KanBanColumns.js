@@ -1,22 +1,22 @@
-import React, { useState,useEffect } from 'react';
-import { GridItem,Badge,Stack ,Card, CardHeader, CardBody, CardFooter} from '@chakra-ui/react';
-import axios from "axios";
+import React  from 'react';
+import { GridItem,Badge,Stack} from '@chakra-ui/react';
 import Task from './Task';
-
+import { useFetchTasks } from '../data/hooks';
 
 
 const KanBanColumn = ({status}) => {
-    const [tasks,setTasks]=useState([]);
-   useEffect(() => {
-       axios.get(`http://localhost:8000/tasks?status=${status.value}`)
-       .then(res=>(setTasks(res.data)));
+//     const [tasks,setTasks]=useState([]);
+//    useEffect(() => {
+//        axios.get(`http://localhost:8000/tasks?status=${status.value}`)
+//        .then(res=>(setTasks(res.data)));
         
-    }, []);
+//     }, []);
+    const {data,isLoading,isError} = useFetchTasks(status.value)
    
     return (       
         <GridItem w='100%' h='10'>
             <Badge color={status.color}>{status.label}</Badge>
-            <Stack> {tasks.map(task=><Task key={task._id} task={task}/> )}</Stack>
+            <Stack> {data?.map(task=><Task key={task._id} task={task}/> )}</Stack>
         </GridItem>
         
     )

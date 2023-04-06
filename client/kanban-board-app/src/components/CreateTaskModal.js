@@ -14,11 +14,24 @@ import {
     Input,
     Textarea
 } from '@chakra-ui/react'
+import { useCreateTask } from '../data/hooks';
 
 const CreateTaskModal = () => {
     const [task, setTask] = useState("");
     const [description, setDescription] = useState("");
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const mutation = useCreateTask();
+	const createTask = () => {
+		if (task === "") return;
+		const request = { task, description }
+		mutation.mutateAsync(request).then(() => {
+			setTask("")
+			setDescription("")
+			onClose()
+
+		})
+	}
 
     return (
         <>
@@ -42,6 +55,7 @@ const CreateTaskModal = () => {
                         <Button colorScheme='blue' mr={3} variant='ghost' onClick={onClose}>
                             Cancel
                         </Button>
+                        <Button onClick={createTask}>Save</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
