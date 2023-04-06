@@ -1,5 +1,6 @@
 import { Box, Heading } from '@chakra-ui/react'
 import CreateTaskModal from './components/CreateTaskModal';
+import KanBanBoard from './components/KanBanBoard';
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
         <Heading> KanBan Board </Heading>
         <CreateTaskModal />
       </Box>
+      <KanBanBoard/>
     </>
   );
 }
