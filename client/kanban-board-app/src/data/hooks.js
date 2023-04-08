@@ -24,3 +24,10 @@ export function useDeleteTask(status) {
   onSuccess: () => queryClient.invalidateQueries({ queryKey: [status] })
  })
 }
+
+export function useUpdateTask(status){
+  return useMutation({
+     mutationFn:(task)=>axios.put(`http://localhost:8000/tasks/${task._id}`,task),
+     // onSuccess:()=> queryClient.invalidateQueries({queryKey:['tasks',status]})
+  })
+}
