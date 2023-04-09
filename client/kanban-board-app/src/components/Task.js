@@ -4,6 +4,7 @@ import { DeleteIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import { useDeleteTask, useUpdateTask } from '../data/hooks';
 import { useQueryClient } from 'react-query';
 import {statuses} from '../data/statuses';
+import EditTaskModal from './EditTaskModel';
 const Task = ({ task }) => {
 
   const taskStatus = statuses.find(status => status.value === task.status);
@@ -39,6 +40,7 @@ const Task = ({ task }) => {
             {otherStatuses.map(status => (<MenuItem key={status.value} onClick={() => handleUpdate(status.value)} color={status.color}>{status.label}</MenuItem>))}
           </MenuList>
         </Menu>
+        <EditTaskModal task={task} />
       </CardFooter>
     </Card>
   );
