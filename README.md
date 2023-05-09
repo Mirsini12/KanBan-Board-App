@@ -7,3 +7,8 @@
 ### Update Task
 ### Delete Task
 ### Move Task from one category to another
+
+## Constraints
+
+### This applications built using MERN Stack(MongoDB, Express, React and Node.js)
+### The app's frontend styled using Chakra UI
